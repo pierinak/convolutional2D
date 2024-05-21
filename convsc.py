@@ -52,10 +52,22 @@ def aplicar_filtro_selecionado():
     filtro_selecionado = var_filtro.get()
     if filtro_selecionado == "Blur":
         filtro = np.ones((5, 5), np.float32) / 25
-    elif filtro_selecionado == "Salt and Pepper":
-        filtro = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
-    elif filtro_selecionado == "Edge Detection":
-        filtro = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
+    elif filtro_selecionado == "Emboss":
+        filtro = np.array([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]])
+    elif filtro_selecionado == "Identy":
+        filtro = np.array([[0, 0, 0], [0, 1, -0], [0, 0, 0]])
+    elif filtro_selecionado == "Bottom sobel":
+        filtro = np.array ([[-1, -2, -1],[0, 0, 0],[1 , 2, 1]])
+    elif filtro_selecionado == "Left sobel":
+        filtro = np.array ([[1, 0 , -1],[2, 0, -2],[1, 0, -1]])
+    elif filtro_selecionado == "Right sobel":
+        filtro = np.array ([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
+    elif filtro_selecionado == "Top sobel":
+        filtro = np.array ([[1, 2, 1],[0, 0, 0,],[-1, -2, -1]])
+    elif filtro_selecionado == "Outline":
+        filtro = np.array ([[-1, -1, -1],[-1, 8, -1],[-1, -1, -1]])
+    elif filtro_selecionado == "Shapen":
+        filtro = np.array ([[0, -1, 0],[-1, 5, -1],[0, -1, 0]])
     else:
         messagebox.showerror("Erro", "Filtro desconhecido.")
         return
@@ -90,8 +102,14 @@ frame_filtros = tk.Frame(root)
 frame_filtros.pack()
 
 tk.Radiobutton(frame_filtros, text="Blur", variable=var_filtro, value="Blur").pack(side=tk.LEFT)
-tk.Radiobutton(frame_filtros, text="Salt and Pepper", variable=var_filtro, value="Salt and Pepper").pack(side=tk.LEFT)
-tk.Radiobutton(frame_filtros, text="Edge Detection", variable=var_filtro, value="Edge Detection").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Emboss", variable=var_filtro, value="Emboss").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Identy", variable=var_filtro, value="Identy").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Bottom sobel", variable=var_filtro, value="Bottom sobel").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Right sobel", variable=var_filtro, value="Right sobel").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Top sobel", variable=var_filtro, value="Top sobel").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Outline", variable=var_filtro, value="Outline").pack(side=tk.LEFT)
+tk.Radiobutton(frame_filtros, text="Shapen", variable=var_filtro, value="Shapen").pack(side=tk.LEFT)
+
 
 # Botão para aplicar o filtro
 btn_aplicar = tk.Button(root, text="Aplicar Filtro", command=aplicar_filtro_selecionado)
